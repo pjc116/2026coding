@@ -1,0 +1,26 @@
+# week13-4.py 學習計畫 Heap / Priority Queue 第2題
+# LeetCode 2336. Smallest Number in Infinite Set
+class SmallestInfiniteSet:
+
+    def __init__(self):
+        self.now = 1
+        self.heap = []
+        self.s = set()
+
+    def popSmallest(self) -> int:
+        if self.heap:
+            self.s.remove(self.heap[0])
+            return heappop(self.heap)
+        self.now += 1
+        return self.now - 1
+
+    def addBack(self, num: int) -> None:
+        if num < self.now and num not in self.s:
+            self.s.add(num)
+            heappush(self.heap, num)
+
+
+# Your SmallestInfiniteSet object will be instantiated and called as such:
+# obj = SmallestInfiniteSet()
+# param_1 = obj.popSmallest()
+# obj.addBack(num)
